@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <style>
+      #div1{ height: 500px;
+             width:500px;
+             position: absolute;
+             top:50%;
+             left:50%;
+             transform: translate(-50%,-50%);
+
+      }
+      input{ background-color: black;
+             color:white;
+             border-radius: 10px;
+             height: 40px;
+             outline: none;
+
+      }
+      input::placeholder{ color:white;
+
+      }
+      button{ border-radius: 25px;
+
+      }
+      #r{ display: none;
+
+      }
+    </style>
+</head>
+<body>
+    <div id="div1" class="container">
+      <h2 class="text-dark my-4 text-center">Crie uma conta</h2>
+      <input class="w-100 mb-2 ps-2" id="nome"type="text" placeholder="Nome"> <br>
+      <input class="w-100 mb-2 ps-2" id="sobrenome"type="text" placeholder="Sobrenome"> <br>
+      <input class="w-100 mb-2 ps-2" id="email"type="email" placeholder="Email"> <br>
+      <input class="w-100 mb-4 ps-2" id="senha"type="password" placeholder="Senha"> <br>
+      <button class="w-100 btn btn-outline-dark mb-4" onclick="cadastrar()">Cadastrar</button>
+      <h3 id="r"class="text-success text-center">Cadastrado com sucesso!</h3>
+    </div>
+    <script>
+      function cadastrar(){
+          let nome = document.getElementById("nome").value ;
+          let sobrenome = document.getElementById("sobrenome").value ;
+          let email = document.getElementById("email").value ;
+          let senha = document.getElementById("senha").value ;
+          let resultado = document.getElementById("r");
+          let usuarios = {nome,sobrenome,email,senha};
+        
+          
+          let options = {
+              method:"POST",
+              headers: new Headers({"content-type": "application/json"}),
+              body: JSON.stringify(usuarios)
+          }
+          fetch("http://localhost:3000/",options).then(res=>{
+              console.log(res);
+              
+              
+          })
+          resultado.style = "display:block"
+         
+      }
+
+    </script>
+</body>
+</html>
